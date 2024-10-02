@@ -9,6 +9,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import BlueButton from "../components/buttons/BlueButton";
 import { useNavigate } from "react-router-dom";
+import AddProductButton from "../components/buttons/AddProductButton";
 
 // Yup validation schema
 const validationSchema = Yup.object().shape({
@@ -208,9 +209,17 @@ function AddProductCategory() {
                     </DetailsHead>
                     <ProductContent>
                         <ListOfProducts>
-                            <MiniTitle title="Product 1"/>
-
+                            <MiniTitle title="Product 1" />
+                            <AddProductButton />
                         </ListOfProducts>
+                        <EachProductDetails>
+                            <Left>
+                                <MiniTitle title="Product Details" />
+                            </Left>
+                            <Right>
+                                <MiniTitle title="Product Cover Photo"/>
+                            </Right>
+                        </EachProductDetails>
                     </ProductContent>
                 </AddProductDetails>
             )}
@@ -301,9 +310,32 @@ const ProductContent = styled.div`
     height: 90%;
     background-color: #ffffff;
     overflow: scroll;
+    padding: 0 25px;
 `;
 
 const ListOfProducts = styled.div`
-    padding: 30px 25px;
+    padding: 30px 0;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    border-bottom: 1px solid #ebebeb;
+`;
 
-`
+const EachProductDetails = styled.div`
+    width: 100%;
+    display: flex;
+    height: 75%;
+`;
+
+const Left = styled.div`
+    margin: 20px 20px 20px 0;
+    width: 70%;
+    border-right: 1px solid #ebebeb;
+    height: 100%;
+    overflow: scroll;
+`;
+
+const Right = styled.div`
+    padding: 20px 0 20px 0px;
+    width: 30%;
+`;
