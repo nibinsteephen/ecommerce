@@ -19,6 +19,7 @@ const validationSchema = Yup.object().shape({
 });
 
 function AddProductCategory() {
+    const [isCategoryAdded, setIsCategoryAdded] = useState(false);
     const [selectedMainCategory, setSelectedMainCategory] = useState("");
 
     const formik = useFormik({
@@ -31,7 +32,7 @@ function AddProductCategory() {
         validationSchema,
         onSubmit: (values) => {
             console.log("Form submitted with values: ", values);
-            navigate("/products/add-products/product-details");
+            setIsCategoryAdded(true);
         },
     });
 
@@ -50,144 +51,170 @@ function AddProductCategory() {
     };
 
     return (
-        <Container>
-            <Content>
-                <Head>
-                    <LeftHead>
-                        <Title title="Add Products" />
-                        <BreadCrumbs>
-                            <a href="/products">Products/</a>
-                            <a href="#">add products</a>
-                        </BreadCrumbs>
-                    </LeftHead>
-                    <RightHead>
-                        <Progress />
-                    </RightHead>
-                </Head>
-                <form onSubmit={formik.handleSubmit}>
-                    <Details>
-                        <MiniTitle title="Categories" />
-                        <CategoryForm>
-                            <EachInput>
-                                <Label>Select Main Category</Label>
-                                <DropdownInput
-                                    name="category_id"
-                                    value={formik.values.category_id}
-                                    placeholder="Select a category"
-                                    displayKey="name"
-                                    valueKey="id"
-                                    options={category_sections}
-                                    onChange={(value) =>
-                                        handleMainCategoryChange(value)
-                                    }
-                                    showSearch={true}
-                                    errorMessage={
-                                        formik.touched.category_id
-                                            ? formik.errors.category_id
-                                            : ""
-                                    }
-                                />
-                            </EachInput>
-                            <>
-                                <EachInput>
-                                    <Label>Category 1</Label>
-                                    <DropdownInput
-                                        name="category1"
-                                        value={formik.values.category1}
-                                        placeholder="Select category 1"
-                                        displayKey="name"
-                                        valueKey="value"
-                                        options={generateProductOptions(
-                                            selectedMainCategory
-                                        )}
-                                        onChange={(value) =>
-                                            formik.setFieldValue(
-                                                "category1",
-                                                value.value
-                                            )
-                                        }
-                                        showSearch={true}
-                                        errorMessage={
-                                            formik.touched.category1
-                                                ? formik.errors.category1
-                                                : ""
-                                        }
+        <>
+            {!isCategoryAdded ? (
+                <Container>
+                    <Content>
+                        <Head>
+                            <LeftHead>
+                                <Title title="Add Products" />
+                                <BreadCrumbs>
+                                    <a href="/products">Products/</a>
+                                    <a href="#">add products</a>
+                                </BreadCrumbs>
+                            </LeftHead>
+                            <RightHead>
+                                <Progress />
+                            </RightHead>
+                        </Head>
+                        <form onSubmit={formik.handleSubmit}>
+                            <Details>
+                                <MiniTitle title="Categories" />
+                                <CategoryForm>
+                                    <EachInput>
+                                        <Label>Select Main Category</Label>
+                                        <DropdownInput
+                                            name="category_id"
+                                            value={formik.values.category_id}
+                                            placeholder="Select a category"
+                                            displayKey="name"
+                                            valueKey="id"
+                                            options={category_sections}
+                                            onChange={(value) =>
+                                                handleMainCategoryChange(value)
+                                            }
+                                            showSearch={true}
+                                            errorMessage={
+                                                formik.touched.category_id
+                                                    ? formik.errors.category_id
+                                                    : ""
+                                            }
+                                        />
+                                    </EachInput>
+                                    <>
+                                        <EachInput>
+                                            <Label>Category 1</Label>
+                                            <DropdownInput
+                                                name="category1"
+                                                value={formik.values.category1}
+                                                placeholder="Select category 1"
+                                                displayKey="name"
+                                                valueKey="value"
+                                                options={generateProductOptions(
+                                                    selectedMainCategory
+                                                )}
+                                                onChange={(value) =>
+                                                    formik.setFieldValue(
+                                                        "category1",
+                                                        value.value
+                                                    )
+                                                }
+                                                showSearch={true}
+                                                errorMessage={
+                                                    formik.touched.category1
+                                                        ? formik.errors
+                                                              .category1
+                                                        : ""
+                                                }
+                                            />
+                                        </EachInput>
+                                        <EachInput>
+                                            <Label>Category 2</Label>
+                                            <DropdownInput
+                                                name="category2"
+                                                value={formik.values.category2}
+                                                placeholder="Select category 2"
+                                                displayKey="name"
+                                                valueKey="value"
+                                                options={generateProductOptions(
+                                                    selectedMainCategory
+                                                )}
+                                                onChange={(value) =>
+                                                    formik.setFieldValue(
+                                                        "category2",
+                                                        value.value
+                                                    )
+                                                }
+                                                showSearch={true}
+                                                errorMessage={
+                                                    formik.touched.category2
+                                                        ? formik.errors
+                                                              .category2
+                                                        : ""
+                                                }
+                                            />
+                                        </EachInput>
+                                        <EachInput>
+                                            <Label>Category 3</Label>
+                                            <DropdownInput
+                                                name="category3"
+                                                value={formik.values.category3}
+                                                placeholder="Select category 3"
+                                                displayKey="name"
+                                                valueKey="value"
+                                                options={generateProductOptions(
+                                                    selectedMainCategory
+                                                )}
+                                                onChange={(value) =>
+                                                    formik.setFieldValue(
+                                                        "category3",
+                                                        value.value
+                                                    )
+                                                }
+                                                showSearch={true}
+                                                errorMessage={
+                                                    formik.touched.category3
+                                                        ? formik.errors
+                                                              .category3
+                                                        : ""
+                                                }
+                                            />
+                                        </EachInput>
+                                    </>
+                                </CategoryForm>
+                                <ButtonWrapper>
+                                    <BlueButton
+                                        name="Cancel"
+                                        type="button"
+                                        height="38px"
+                                        width="150px"
+                                        border="ffffff"
+                                        background="#FFFFFF"
+                                        color="#ADADAD"
+                                        onClick={handleCancel}
                                     />
-                                </EachInput>
-                                <EachInput>
-                                    <Label>Category 2</Label>
-                                    <DropdownInput
-                                        name="category2"
-                                        value={formik.values.category2}
-                                        placeholder="Select category 2"
-                                        displayKey="name"
-                                        valueKey="value"
-                                        options={generateProductOptions(
-                                            selectedMainCategory
-                                        )}
-                                        onChange={(value) =>
-                                            formik.setFieldValue(
-                                                "category2",
-                                                value.value
-                                            )
-                                        }
-                                        showSearch={true}
-                                        errorMessage={
-                                            formik.touched.category2
-                                                ? formik.errors.category2
-                                                : ""
-                                        }
-                                    />
-                                </EachInput>
-                                <EachInput>
-                                    <Label>Category 3</Label>
-                                    <DropdownInput
-                                        name="category3"
-                                        value={formik.values.category3}
-                                        placeholder="Select category 3"
-                                        displayKey="name"
-                                        valueKey="value"
-                                        options={generateProductOptions(
-                                            selectedMainCategory
-                                        )}
-                                        onChange={(value) =>
-                                            formik.setFieldValue(
-                                                "category3",
-                                                value.value
-                                            )
-                                        }
-                                        showSearch={true}
-                                        errorMessage={
-                                            formik.touched.category3
-                                                ? formik.errors.category3
-                                                : ""
-                                        }
-                                    />
-                                </EachInput>
-                            </>
-                        </CategoryForm>
-                        <ButtonWrapper>
-                            <BlueButton
-                                name="Cancel"
-                                type="button"
-                                height="38px"
-                                width="150px"
-                                border="ffffff"
-                                background="#FFFFFF"
-                                color="#ADADAD"
-                                onClick={handleCancel}
-                            />
-                            <BlueButton
-                                name="Submit"
-                                type="submit"
-                                height="38px"
-                                width="150px"
-                            ></BlueButton>
-                        </ButtonWrapper>
-                    </Details>
-                </form>
-            </Content>
-        </Container>
+                                    <BlueButton
+                                        name="Submit"
+                                        type="submit"
+                                        height="38px"
+                                        width="150px"
+                                    ></BlueButton>
+                                </ButtonWrapper>
+                            </Details>
+                        </form>
+                    </Content>
+                </Container>
+            ) : (
+                <AddProductDetails>
+                    <DetailsHead>
+                        <LeftHead>
+                            <Title title="Add Products" />
+                            <BreadCrumbs>
+                                <a href="/products">Products/</a>
+                                <a href="#">add products</a>
+                            </BreadCrumbs>
+                        </LeftHead>
+                        <Progress status="secondPhase" />
+                    </DetailsHead>
+                    <ProductContent>
+                        <ListOfProducts>
+                            <MiniTitle title="Product 1"/>
+
+                        </ListOfProducts>
+                    </ProductContent>
+                </AddProductDetails>
+            )}
+        </>
     );
 }
 
@@ -253,13 +280,30 @@ const Label = styled.label`
     align-items: center;
 `;
 
-const ErrorMessage = styled.div`
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-`;
-
 const ButtonWrapper = styled.div`
     display: flex;
     justify-content: end;
 `;
+
+const AddProductDetails = styled.div`
+    padding: 19px;
+    height: 100%;
+`;
+
+const DetailsHead = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+const ProductContent = styled.div`
+    margin-top: 10px;
+    height: 90%;
+    background-color: #ffffff;
+    overflow: scroll;
+`;
+
+const ListOfProducts = styled.div`
+    padding: 30px 25px;
+
+`
