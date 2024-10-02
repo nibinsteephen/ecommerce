@@ -11,6 +11,8 @@ const Heading = styled.div`
     gap: 5px;
     color: #ADADAD;
     text-transform: capitalize;
+    padding: 8px 24px;
+    font-size: 13px;
     &:after {
         content: "";
         display: block;

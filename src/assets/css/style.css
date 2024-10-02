@@ -65,3 +65,6 @@ span {
     max-width: 1325px;
     margin: 0 auto;
 }
+*::-webkit-scrollbar {
+    display: none;
+}

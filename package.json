@@ -10,10 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "formik": "^2.4.6",
+    "framer-motion": "^11.9.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-paginate": "^8.2.0",
     "react-router-dom": "^6.26.2",
-    "styled-components": "^6.1.13"
+    "react-use-click-outside-hook": "^2.0.0",
+    "styled-components": "^6.1.13",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
